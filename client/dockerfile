@@ -1,0 +1,10 @@
+FROM node:20
+
+WORKDIR /ui
+COPY . /ui
+
+RUN npm i
+
+EXPOSE 80
+
+CMD ["npm", "start"]

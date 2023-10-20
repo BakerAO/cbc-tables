@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  # client:
+  #   container_name: cbc-client
+  #   build:
+  #     context: ./client/
+  #     dockerfile: dockerfile
+  #   ports:
+  #     - "80:80"
+  api:
+    container_name: cbc-api
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_PORT: 8002
+      MYSQL_HOST: ${MYSQL_HOST}
+    build:
+      context: ./api/
+      dockerfile: dockerfile
+    ports:
+      - "8001:8001"
+  db:
+    image: mariadb
+    container_name: cbc-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "8002:3306"
+    volumes:
+      - cbc-mariadb-volume:/var/lib/mysql
+volumes:
+  cbc-mariadb-volume:
