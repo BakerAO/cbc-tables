@@ -91,14 +91,8 @@ const wrapper = () => {
 
   router.get('/generate', async (req, res) => {
     try {
-      const [exists] = await mysqlPool.query(getTables)
-      if (exists && exists.length) {
-        res.status(200).send('Already exists')
-        return
-      }
-
       await mysqlPool.query(`
-        CREATE TABLE brunchTables (
+        CREATE TABLE IF NOT EXISTS brunchTables (
           id int primary key,
           size int,
           assignedPerson varchar(100)
