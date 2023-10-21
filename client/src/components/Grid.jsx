@@ -27,6 +27,8 @@ const styles = {
     flexDirection: 'row-reverse',
   },
   item: {
+    fontFamily: 'Arial',
+    fontSize: 30,
     display: 'flex',
     height: '50px',
     width: '50px',
@@ -34,7 +36,6 @@ const styles = {
     alignItems: 'center',
     border: '1px solid black',
     margin: '15px',
-    fontSize: 30,
     backgroundColor: colors.size8,
     borderRadius: '5rem',
     color: 'white',
@@ -57,6 +58,7 @@ export default function Grid(props) {
         backgroundColor: colors.size10,
         height: '60px',
         width: '60px',
+        fontSize: 36,
       }
       if (t.assignedPerson) {
         itemStyle = {

@@ -7,6 +7,8 @@ const styles = {
     flexDirection: 'column',
   },
   box: {
+    fontSize: 40,
+    fontFamily: 'Arial',
     height: '75px',
     width: '50%',
     display: 'flex',

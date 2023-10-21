@@ -7,6 +7,9 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  header: {
+    fontFamily: 'Arial',
+  },
   row: {
     width: '10%',
     display: 'flex',
@@ -27,15 +30,15 @@ export default function Legend() {
   return (
     <div style={styles.container}>
       <div style={styles.row}>
-        <h4>10 Spots</h4>
+        <h4 style={styles.header}>10 Spots</h4>
         <div style={styles.item} />
       </div>
       <div style={styles.row}>
-        <h4>8 Spots</h4>
+        <h4 style={styles.header}>8 Spots</h4>
         <div style={{ ...styles.item, backgroundColor: colors.size8 }} />
       </div>
       <div style={styles.row}>
-        <h4>Taken</h4>
+        <h4 style={styles.header}>Taken</h4>
         <div style={{ ...styles.item, backgroundColor: colors.taken }} />
       </div>
     </div>
