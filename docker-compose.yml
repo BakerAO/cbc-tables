@@ -2,6 +2,7 @@ version: "3.7"
 services:
   client:
     container_name: cbc-client
+    restart: unless-stopped
     build:
       context: ./client/
       dockerfile: dockerfile
@@ -9,6 +10,7 @@ services:
       - "80:8000"
   api:
     container_name: cbc-api
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -23,6 +25,7 @@ services:
   db:
     image: mariadb
     container_name: cbc-mariadb
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}

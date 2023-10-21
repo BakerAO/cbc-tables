@@ -98,7 +98,7 @@ const wrapper = () => {
       }
 
       await mysqlPool.query(`
-        CREATE TABLE IF NOT EXISTS brunchTables (
+        CREATE TABLE brunchTables (
           id int primary key,
           size int,
           assignedPerson varchar(100)
