@@ -1,11 +1,10 @@
-import api from '../data/api'
+import colors from '../common/colors'
 
 const styles = {
   grid: {
     boxSizing: 'border-box',
-    height: '80%',
+    height: '70%',
     width: '98%',
-    border: '2px solid black',
   },
   insideGrid: {
     width: '100%',
@@ -34,34 +33,42 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     border: '1px solid black',
-    margin: '5px',
+    margin: '15px',
     fontSize: 30,
-    backgroundColor: 'red',
+    backgroundColor: colors.size8,
     borderRadius: '5rem',
     color: 'white',
-  }
+  },
 }
 
 export default function Grid(props) {
   const { tables, setSelectedTable } = props
 
   const handleClick = (p) => {
-    setSelectedTable(p.id)
+    setSelectedTable(p)
   }
 
   const renderTables = () => {
     const items = []
     for (const t of tables) {
-      let style = styles.item
-      if (t.size === 10) style = {
-        ...style,
-        backgroundColor: 'green',
+      let itemStyle = styles.item
+      if (t.size === 10) itemStyle = {
+        ...itemStyle,
+        backgroundColor: colors.size10,
         height: '60px',
         width: '60px',
       }
+      if (t.assignedPerson) {
+        itemStyle = {
+          ...itemStyle,
+          borderWidth: '5px',
+          borderColor: t.size === 10 ? colors.size10 : colors.size8,
+          backgroundColor: colors.taken,
+        }
+      }
 
       items.push(
-        <div style={style} key={t.id} onClick={() => handleClick(t)}>
+        <div style={itemStyle} key={t.id} onClick={() => handleClick(t)}>
           {t.id}
         </div>
       )
@@ -73,37 +80,37 @@ export default function Grid(props) {
   const renderRows = (renderedTables) => {
     const items = []
     items.push(
-      <div style={styles.oddRow}>
+      <div style={styles.oddRow} key="row1">
         {renderedTables.slice(0, 8)}
       </div>
     )
 
     items.push(
-      <div style={styles.evenRow}>
+      <div style={styles.evenRow} key="row2">
         {renderedTables.slice(8, 18)}
       </div>
     )
 
     items.push(
-      <div style={styles.oddRow}>
+      <div style={styles.oddRow} key="row3">
         {renderedTables.slice(18, 28)}
       </div>
     )
 
     items.push(
-      <div style={styles.evenRow}>
+      <div style={styles.evenRow} key="row4">
         {renderedTables.slice(28, 39)}
       </div>
     )
 
     items.push(
-      <div style={styles.oddRow}>
+      <div style={styles.oddRow} key="row5">
         {renderedTables.slice(39, 50)}
       </div>
     )
 
     items.push(
-      <div style={styles.evenRow}>
+      <div style={styles.evenRow} key="row6">
         {renderedTables.slice(50, 54)}
       </div>
     )

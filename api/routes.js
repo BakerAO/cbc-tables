@@ -70,8 +70,33 @@ const wrapper = () => {
     }
   })
 
+  router.get('/reset/:id', async (req, res) => {
+    try {
+      const { id } = req.params
+
+      const updateQuery = `
+        UPDATE brunchTables
+        SET
+          assignedPerson = NULL
+        WHERE id = ${id}
+      `
+      await mysqlPool.query(updateQuery)
+
+      const [newTables] = await mysqlPool.query(getTables)
+      res.status(200).send(newTables)
+    } catch (e) {
+      res.status(500).send(e)
+    }
+  })
+
   router.get('/generate', async (req, res) => {
     try {
+      const [exists] = await mysqlPool.query(getTables)
+      if (exists && exists.length) {
+        res.status(200).send('Already exists')
+        return
+      }
+
       await mysqlPool.query(`
         CREATE TABLE IF NOT EXISTS brunchTables (
           id int primary key,

@@ -24,11 +24,13 @@ const styles = {
   },
   close: {
     fontSize: 40,
-    color: 'white',
-    backgroundColor: 'red',
+    color: 'black',
+    backgroundColor: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    margin: '0 15px 0 0',
+    fontFamily: 'Gill Sans',
   },
 }
 
@@ -39,9 +41,9 @@ export default function Modal(props) {
     <dialog open={!!selectedTable} style={styles.dialog}>
       <div style={styles.container}>
         <div style={styles.top}>
-          <div style={styles.close} onClick={() => setSelectedTable(null)}>
+          <button style={styles.close} onClick={() => setSelectedTable(null)}>
             X
-          </div>
+          </button>
         </div>
         <AssignPersonForm selectedTable={selectedTable} setSelectedTable={setSelectedTable} />
       </div>

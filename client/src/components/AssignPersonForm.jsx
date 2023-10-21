@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import api from '../data/api'
+import api from '../common/api'
 
 const styles = {
-  bottom: {
+  container: {
     height: '400px',
     width: '100%',
     display: 'flex',
@@ -11,30 +11,39 @@ const styles = {
     alignItems: 'center',
   },
   textInput: {
+    height: '20%',
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  input: {
+    height: '25px',
+    fontSize: 20,
+  },
   button: {
-    height: '50px',
-    width: '200px',
+    height: '30px',
+    width: '150px',
     borderRadius: '.25rem',
     backgroundColor: 'green',
     border: '1px solid black',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    margin: '0 0 0 0',
+    margin: '50px 0 0 0',
   },
   inside: {
-    height: '50px',
+    height: '30px',
     width: '50px',
-    fontSize: 40,
+    fontSize: 25,
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  label: {
+    marginRight: 10,
+    fontSize: 25,
   },
 }
 
@@ -49,28 +58,41 @@ export default function AssignPersonForm(props) {
 
   const handleSubmit = () => {
     api.post('tables', {
-      id: selectedTable,
+      id: selectedTable.id,
       assignedPerson,
     })
     handleClose()
+    window.location.reload()
   }
 
-  return (
-    <div style={styles.bottom}>
-      <h3>{selectedTable}</h3>
-      <div style={styles.textInput}>
-        <label style={{ marginRight: 5 }}>Name</label>
-        <input
-          type='text'
-          value={assignedPerson}
-          onChange={(e) => setAssignedPerson(e.target.value)}
-        />
-      </div>
-      <button style={styles.button} onClick={handleSubmit}>
-        <div style={styles.inside}>
-          Submit
+  const renderInput = () => {
+    return (
+      <>
+        <div style={styles.textInput}>
+          <label style={styles.label}>Name:</label>
+          <input
+            style={styles.input}
+            type='text'
+            value={assignedPerson}
+            onChange={(e) => setAssignedPerson(e.target.value)}
+          />
         </div>
-      </button>
+        <button style={styles.button} onClick={handleSubmit}>
+          <div style={styles.inside}>
+            Submit
+          </div>
+        </button>
+      </>
+    )
+  }
+
+  if (!selectedTable) return <div />
+
+  return (
+    <div style={styles.container}>
+      <h1>Table {selectedTable.id}</h1>
+      <h2>{selectedTable.assignedPerson}</h2>
+      {!selectedTable.assignedPerson ? renderInput() : null}
     </div>
   )
 }
