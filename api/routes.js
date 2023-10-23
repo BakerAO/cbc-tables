@@ -5,7 +5,8 @@ const getTables = `
   SELECT
     id,
     size,
-    assignedPerson
+    assignedPerson,
+    email
   FROM brunchTables
 `
 
@@ -41,7 +42,7 @@ const wrapper = () => {
 
   router.post('/tables', async (req, res) => {
     try {
-      const { id, assignedPerson } = req.body
+      const { id, assignedPerson, email } = req.body
 
       const [currTables] = await mysqlPool.query(`
         SELECT
@@ -58,7 +59,8 @@ const wrapper = () => {
       const updateQuery = `
         UPDATE brunchTables
         SET
-          assignedPerson = '${assignedPerson}'
+          assignedPerson = '${assignedPerson}',
+          email = '${email}'
         WHERE id = ${id}
       `
       await mysqlPool.query(updateQuery)
@@ -77,7 +79,8 @@ const wrapper = () => {
       const updateQuery = `
         UPDATE brunchTables
         SET
-          assignedPerson = NULL
+          assignedPerson = NULL,
+          email = NULL
         WHERE id = ${id}
       `
       await mysqlPool.query(updateQuery)
@@ -95,7 +98,8 @@ const wrapper = () => {
         CREATE TABLE IF NOT EXISTS brunchTables (
           id int primary key,
           size int,
-          assignedPerson varchar(100)
+          assignedPerson varchar(100),
+          email varchar(100)
         );
       `)
 

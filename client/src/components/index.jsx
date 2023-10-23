@@ -9,11 +9,13 @@ import Stage from './Stage'
 const styles = {
   container: {
     height: '100vh',
-    width: '100%',
-    minHeight: '900px',
-    minWidth: '1200px',
+    width: '100vw',
+    minHeight: '600px',
+    minWidth: '800px',
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }
 
