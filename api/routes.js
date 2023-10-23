@@ -40,6 +40,24 @@ const wrapper = () => {
     }
   })
 
+  router.get('/assigned', async (req, res) => {
+    try {
+      const [tables] = await mysqlPool.query(`
+        SELECT
+          id,
+          size,
+          assignedPerson,
+          email
+        FROM brunchTables
+        WHERE assignedPerson IS NOT NULL
+      `)
+
+      res.status(200).send(tables)
+    } catch (err) {
+      res.status(500).send(err)
+    }
+  })
+
   router.post('/tables', async (req, res) => {
     try {
       const { id, assignedPerson, email } = req.body
