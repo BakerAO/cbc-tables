@@ -35,7 +35,7 @@ const styles = {
 }
 
 export default function Modal(props) {
-  const { selectedTable, setSelectedTable } = props
+  const { selectedTable, setSelectedTable, setTables } = props
 
   return (
     <dialog open={!!selectedTable} style={styles.dialog}>
@@ -45,7 +45,11 @@ export default function Modal(props) {
             X
           </button>
         </div>
-        <AssignPersonForm selectedTable={selectedTable} setSelectedTable={setSelectedTable} />
+        <AssignPersonForm 
+          selectedTable={selectedTable}
+          setSelectedTable={setSelectedTable}
+          setTables={setTables}
+        />
       </div>
     </dialog>
   )

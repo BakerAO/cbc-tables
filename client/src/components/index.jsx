@@ -10,6 +10,8 @@ const styles = {
   container: {
     height: '100vh',
     width: '100%',
+    minHeight: '900px',
+    minWidth: '1200px',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -34,7 +36,11 @@ export default function App() {
       <Grid tables={tables} setSelectedTable={setSelectedTable} />
       <MainDoors />
       <Legend />
-      <Modal selectedTable={selectedTable} setSelectedTable={setSelectedTable} />
+      <Modal
+        selectedTable={selectedTable}
+        setSelectedTable={setSelectedTable}
+        setTables={setTables}
+      />
     </div>
   )
 }

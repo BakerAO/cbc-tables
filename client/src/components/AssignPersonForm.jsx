@@ -48,21 +48,16 @@ const styles = {
 }
 
 export default function AssignPersonForm(props) {
-  const { selectedTable, setSelectedTable } = props
+  const { selectedTable, setSelectedTable, setTables } = props
   const [assignedPerson, setAssignedPerson] = useState('')
 
-  const handleClose = () => {
-    setAssignedPerson('')
-    setSelectedTable(null)
-  }
-
-  const handleSubmit = () => {
-    api.post('tables', {
+  const handleSubmit = async () => {
+    const newTables = await api.post('tables', {
       id: selectedTable.id,
       assignedPerson,
     })
-    handleClose()
-    window.location.reload()
+    setTables(newTables.data)
+    setSelectedTable(newTables.data.find(t => t.id === selectedTable.id))
   }
 
   const renderInput = () => {
