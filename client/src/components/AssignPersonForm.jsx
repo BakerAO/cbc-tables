@@ -57,6 +57,7 @@ export default function AssignPersonForm(props) {
       assignedPerson,
     })
     setTables(newTables.data)
+    setAssignedPerson('')
     setSelectedTable(newTables.data.find(t => t.id === selectedTable.id))
   }
 
