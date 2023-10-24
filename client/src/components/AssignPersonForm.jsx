@@ -51,16 +51,19 @@ export default function AssignPersonForm(props) {
   const { selectedTable, setSelectedTable, setTables } = props
   const [assignedPerson, setAssignedPerson] = useState('')
   const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
 
   const handleSubmit = async () => {
     const newTables = await api.post('tables', {
       id: selectedTable.id,
       assignedPerson,
       email,
+      phone,
     })
     setTables(newTables.data)
     setAssignedPerson('')
     setEmail('')
+    setPhone('')
     setSelectedTable(newTables.data.find(t => t.id === selectedTable.id))
   }
 
@@ -83,6 +86,15 @@ export default function AssignPersonForm(props) {
             type='text'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div style={styles.textInput}>
+          <label style={styles.label}>Phone:</label>
+          <input
+            style={styles.input}
+            type='text'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
         <button style={styles.button} onClick={handleSubmit}>

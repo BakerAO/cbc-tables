@@ -6,7 +6,8 @@ const getTables = `
     id,
     size,
     assignedPerson,
-    email
+    email,
+    phone
   FROM brunchTables
 `
 
@@ -47,7 +48,8 @@ const wrapper = () => {
           id,
           size,
           assignedPerson,
-          email
+          email,
+          phone
         FROM brunchTables
         WHERE assignedPerson IS NOT NULL
       `)
@@ -60,7 +62,7 @@ const wrapper = () => {
 
   router.post('/tables', async (req, res) => {
     try {
-      const { id, assignedPerson, email } = req.body
+      const { id, assignedPerson, email, phone } = req.body
 
       const [currTables] = await mysqlPool.query(`
         SELECT
@@ -78,7 +80,8 @@ const wrapper = () => {
         UPDATE brunchTables
         SET
           assignedPerson = '${assignedPerson}',
-          email = '${email}'
+          email = '${email}',
+          phone = '${phone}'
         WHERE id = ${id}
       `
       await mysqlPool.query(updateQuery)
@@ -98,7 +101,8 @@ const wrapper = () => {
         UPDATE brunchTables
         SET
           assignedPerson = NULL,
-          email = NULL
+          email = NULL,
+          phone = NULL
         WHERE id = ${id}
       `
       await mysqlPool.query(updateQuery)
@@ -117,7 +121,8 @@ const wrapper = () => {
           id int primary key,
           size int,
           assignedPerson varchar(100),
-          email varchar(100)
+          email varchar(100),
+          phone varchar(20)
         );
       `)
 
