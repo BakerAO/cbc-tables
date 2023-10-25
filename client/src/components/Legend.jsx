@@ -7,11 +7,17 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
   },
+  subContainer: {
+    width: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   header: {
     fontFamily: 'Arial',
   },
   row: {
-    width: '10%',
+    width: '27%',
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -29,17 +35,19 @@ const styles = {
 export default function Legend() {
   return (
     <div style={styles.container}>
-      <div style={styles.row}>
-        <h4 style={styles.header}>10 Spots</h4>
-        <div style={styles.item} />
-      </div>
-      <div style={styles.row}>
-        <h4 style={styles.header}>8 Spots</h4>
-        <div style={{ ...styles.item, backgroundColor: colors.size8 }} />
-      </div>
-      <div style={styles.row}>
-        <h4 style={styles.header}>Taken</h4>
-        <div style={{ ...styles.item, backgroundColor: colors.taken }} />
+      <div style={styles.subContainer}>
+        <div style={styles.row}>
+          <h4 style={styles.header}>10 Spots</h4>
+          <div style={styles.item} />
+        </div>
+        <div style={styles.row}>
+          <h4 style={styles.header}>8 Spots</h4>
+          <div style={{ ...styles.item, backgroundColor: colors.size8 }} />
+        </div>
+        <div style={styles.row}>
+          <h4 style={styles.header}>Taken</h4>
+          <div style={{ ...styles.item, backgroundColor: colors.taken }} />
+        </div>
       </div>
     </div>
   )

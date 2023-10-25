@@ -4,15 +4,14 @@ import Grid from './Grid'
 import Legend from './Legend'
 import MainDoors from './MainDoors'
 import Modal from './Modal'
-import Picture from './Picture'
 import Stage from './Stage'
 
 const styles = {
   container: {
-    height: '120vh',
+    height: '100vh',
     width: '100vw',
-    minHeight: '1400px',
-    minWidth: '1200px',
+    minHeight: '900px',
+    minWidth: '900px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -35,7 +34,6 @@ export default function App() {
 
   return (
     <div style={styles.container}>
-      <Picture />
       <Stage />
       <Grid tables={tables} setSelectedTable={setSelectedTable} />
       <MainDoors />
