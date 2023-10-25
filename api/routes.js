@@ -56,7 +56,7 @@ const wrapper = () => {
 
       let listItems = ''
       for (const t of tables) {
-        listItems += `<li>${t.assignedPerson}, ${t.email}, ${t.phone}</li>`
+        listItems += `<li>Table ${t.id}, ${t.assignedPerson}, ${t.email}, ${t.phone}</li>`
       }
 
       res.status(200).send(`
