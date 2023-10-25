@@ -54,7 +54,22 @@ const wrapper = () => {
         WHERE assignedPerson IS NOT NULL
       `)
 
-      res.status(200).send(tables)
+      let listItems = ''
+      for (const t of tables) {
+        listItems += `<li>${t.assignedPerson}, ${t.email}, ${t.phone}</li>`
+      }
+
+      res.status(200).send(`
+        <html>
+          <head>CBC-API</head>
+          <body>
+            <h3>Assigned</h3>
+            <ul>
+              ${listItems}
+            </ul>
+          </body>
+        </html>
+      `)
     } catch (err) {
       res.status(500).send(err)
     }
@@ -141,13 +156,13 @@ const wrapper = () => {
         await mysqlPool.query(createTable)
       }
 
-      
+
       await mysqlPool.query(`
         UPDATE brunchTables
         SET size = 10
         WHERE id in (1,4,9,15,19,24,26,31,35,39,41,44,47,51,54)
       `)
-  
+
       res.status(200).send('Success')
     } catch (e) {
       res.status(500).send(e)
