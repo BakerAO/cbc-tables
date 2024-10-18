@@ -1,14 +1,14 @@
 # CBC Panel
-docker-compose up -d
+docker compose up -d
 
 ### .env
 
 MYSQL_ROOT_PASSWORD=myPassword
 
-MYSQL_DATABASE=db
+MYSQL_DATABASE=myDB
 
-MYSQL_USER=user
+MYSQL_USER=myUser
 
 MYSQL_PASSWORD=myPassword
 
-MYSQL_HOST=127.0.0.1
+MYSQL_HOST=x.x.x.x

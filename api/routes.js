@@ -15,20 +15,38 @@ const wrapper = () => {
   const router = new ExRouter()
 
   router.get('/', (req, res) => {
-    res.status(200).send(`
+    const htmlA = `
       <html>
         <head>CBC-API</head>
         <body>
           <h1>CBC-API</h1>
-          <a href="/generate">
-            <button>Generate</button>
+    `;
+
+    const htmlB = `
+      <a href="/generate">
+        <button>Generate</button>
+      </a>
+      <a href="/destroy">
+        <button>Destroy</button>
+      </a>
+    `;
+
+    const htmlC = `
+          <a href="/assigned">
+            <button>Assigned</button>
           </a>
-          <a href="/destroy">
-            <button>Destroy</button>
-          </a>
+          <form action="/reset">
+            <label for="id">Reset Table</label>
+            <br />
+            <input type="text" id="id" name="id">
+            <br />
+            <input type="submit" value="Submit">
+          </form>
         </body>
       </html>
-    `)
+    `;
+
+    res.status(200).send(htmlA + htmlC)
   })
 
   router.get('/tables', async (req, res) => {
@@ -108,9 +126,9 @@ const wrapper = () => {
     }
   })
 
-  router.get('/reset/:id', async (req, res) => {
+  router.get('/reset', async (req, res) => {
     try {
-      const { id } = req.params
+      const { id } = req.query;
 
       const updateQuery = `
         UPDATE brunchTables
