@@ -160,26 +160,26 @@ const wrapper = () => {
       `)
 
       for (let i = 1; i <= 54; i++) {
-        const createTable = `
+        const insertQuery = `
           INSERT INTO brunchTables (
             id,
             size
           )
           VALUES (
             ${i},
-            8
+            10
           )
         `
 
-        await mysqlPool.query(createTable)
+        await mysqlPool.query(insertQuery)
       }
 
 
-      await mysqlPool.query(`
-        UPDATE brunchTables
-        SET size = 10
-        WHERE id in (1,4,9,15,19,24,26,31,35,39,41,44,47,51,54)
-      `)
+      // await mysqlPool.query(`
+      //   UPDATE brunchTables
+      //   SET size = 10
+      //   WHERE id in (1,4,9,15,19,24,26,31,35,39,41,44,47,51,54)
+      // `)
 
       res.status(200).send('Success')
     } catch (e) {
