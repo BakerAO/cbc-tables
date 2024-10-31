@@ -40,10 +40,10 @@ export default function Legend() {
           <h4 style={styles.header}>10 Spots</h4>
           <div style={styles.item} />
         </div>
-        <div style={styles.row}>
+        {/* <div style={styles.row}>
           <h4 style={styles.header}>8 Spots</h4>
           <div style={{ ...styles.item, backgroundColor: colors.size8 }} />
-        </div>
+        </div> */}
         <div style={styles.row}>
           <h4 style={styles.header}>Taken</h4>
           <div style={{ ...styles.item, backgroundColor: colors.taken }} />
