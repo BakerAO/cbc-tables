@@ -159,7 +159,7 @@ const wrapper = () => {
         );
       `)
 
-      for (let i = 1; i <= 54; i++) {
+      for (let i = 1; i <= 55; i++) {
         const insertQuery = `
           INSERT INTO brunchTables (
             id,
@@ -174,7 +174,6 @@ const wrapper = () => {
         await mysqlPool.query(insertQuery)
       }
 
-
       // await mysqlPool.query(`
       //   UPDATE brunchTables
       //   SET size = 10
@@ -187,17 +186,17 @@ const wrapper = () => {
     }
   })
 
-  // router.get('/destroy', async (req, res) => {
-  //   try {
-  //     await mysqlPool.query(`
-  //       DROP TABLE IF EXISTS brunchTables;
-  //     `)
+  router.get('/destroy', async (req, res) => {
+    try {
+      await mysqlPool.query(`
+        DROP TABLE IF EXISTS brunchTables;
+      `)
 
-  //     res.status(200).send('Success')
-  //   } catch (e) {
-  //     res.status(500).send(e)
-  //   }
-  // })
+      res.status(200).send('Success')
+    } catch (e) {
+      res.status(500).send(e)
+    }
+  })
 
   return router
 }
