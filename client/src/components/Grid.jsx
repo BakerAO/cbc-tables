@@ -113,7 +113,7 @@ export default function Grid(props) {
 
     items.push(
       <div style={styles.evenRow} key="row6">
-        {renderedTables.slice(50, 54)}
+        {renderedTables.slice(50, 55)}
       </div>
     )
 
