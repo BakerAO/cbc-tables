@@ -147,45 +147,45 @@ const wrapper = () => {
     }
   })
 
-  // router.get('/generate', async (req, res) => {
-  //   try {
-  //     await mysqlPool.query(`
-  //       CREATE TABLE IF NOT EXISTS brunchTables (
-  //         id int primary key,
-  //         size int,
-  //         assignedPerson varchar(100),
-  //         email varchar(100),
-  //         phone varchar(20)
-  //       );
-  //     `)
+  router.get('/generate', async (req, res) => {
+    try {
+      await mysqlPool.query(`
+        CREATE TABLE IF NOT EXISTS brunchTables (
+          id int primary key,
+          size int,
+          assignedPerson varchar(100),
+          email varchar(100),
+          phone varchar(20)
+        );
+      `)
 
-  //     for (let i = 1; i <= 54; i++) {
-  //       const insertQuery = `
-  //         INSERT INTO brunchTables (
-  //           id,
-  //           size
-  //         )
-  //         VALUES (
-  //           ${i},
-  //           10
-  //         )
-  //       `
+      for (let i = 1; i <= 54; i++) {
+        const insertQuery = `
+          INSERT INTO brunchTables (
+            id,
+            size
+          )
+          VALUES (
+            ${i},
+            10
+          )
+        `
 
-  //       await mysqlPool.query(insertQuery)
-  //     }
+        await mysqlPool.query(insertQuery)
+      }
 
 
-  //     // await mysqlPool.query(`
-  //     //   UPDATE brunchTables
-  //     //   SET size = 10
-  //     //   WHERE id in (1,4,9,15,19,24,26,31,35,39,41,44,47,51,54)
-  //     // `)
+      // await mysqlPool.query(`
+      //   UPDATE brunchTables
+      //   SET size = 10
+      //   WHERE id in (1,4,9,15,19,24,26,31,35,39,41,44,47,51,54)
+      // `)
 
-  //     res.status(200).send('Success')
-  //   } catch (e) {
-  //     res.status(500).send(e)
-  //   }
-  // })
+      res.status(200).send('Success')
+    } catch (e) {
+      res.status(500).send(e)
+    }
+  })
 
   // router.get('/destroy', async (req, res) => {
   //   try {
