@@ -1,5 +1,6 @@
-import { Router as ExRouter } from 'express'
-import mysqlPool from './mysqlPool.js'
+import { Router as ExRouter } from 'express';
+import mysqlPool from './mysqlPool.js';
+import { adminAuth } from './server.js';
 
 const getTables = `
   SELECT
@@ -57,7 +58,7 @@ const wrapper = () => {
     }
   })
 
-  router.get('/assigned', async (req, res) => {
+  router.get('/assigned', adminAuth, async (req, res) => {
     try {
       const [tables] = await mysqlPool.query(`
         SELECT
@@ -124,7 +125,7 @@ const wrapper = () => {
     }
   })
 
-  router.get('/reset', async (req, res) => {
+  router.get('/reset', adminAuth, async (req, res) => {
     try {
       const { id } = req.query;
 
@@ -145,7 +146,7 @@ const wrapper = () => {
     }
   })
 
-  router.get('/generate', async (req, res) => {
+  router.get('/generate', adminAuth, async (req, res) => {
     try {
       await mysqlPool.query(`
         CREATE TABLE IF NOT EXISTS brunchTables (
@@ -184,7 +185,7 @@ const wrapper = () => {
     }
   })
 
-  router.get('/destroy', async (req, res) => {
+  router.get('/destroy', adminAuth, async (req, res) => {
     try {
       await mysqlPool.query(`
         DROP TABLE IF EXISTS brunchTables;

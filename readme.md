@@ -14,3 +14,7 @@ MYSQL_PASSWORD=myPassword
 MYSQL_HOST=x.x.x.x
 
 MYSQL_PORT=3306
+
+API_USER=apiUser
+
+API_PASSWORD=apiPassword

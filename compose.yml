@@ -50,6 +50,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_PORT: ${MYSQL_PORT}
       MYSQL_HOST: ${MYSQL_HOST}
+      API_USER: ${API_USER}
+      API_PASSWORD: ${API_PASSWORD}
     networks:
       proxy-tier:
         ipv4_address: 172.20.20.101
