@@ -1,22 +1,22 @@
 services:
-    nginx-proxy:
-    container_name: nginx-proxy
-    image: nginxproxy/nginx-proxy:alpine
-    restart: unless-stopped
-    labels:
-      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
-    volumes:
-      - ./uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf
-      - /var/run/docker.sock:/tmp/docker.sock:z,ro
-      - certs:/etc/nginx/certs:z,ro
-      - vhost.d:/etc/nginx/vhost.d:z
-      - html:/usr/share/nginx/html:z
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      proxy-tier:
-        ipv4_address: 172.20.20.2
+  nginx-proxy:
+  container_name: nginx-proxy
+  image: nginxproxy/nginx-proxy:alpine
+  restart: unless-stopped
+  labels:
+    com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+  volumes:
+    - ./uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf
+    - /var/run/docker.sock:/tmp/docker.sock:z,ro
+    - certs:/etc/nginx/certs:z,ro
+    - vhost.d:/etc/nginx/vhost.d:z
+    - html:/usr/share/nginx/html:z
+  ports:
+    - 80:80
+    - 443:443
+  networks:
+    proxy-tier:
+      ipv4_address: 172.20.20.2
 
   lets-encrypt:
     container_name: lets-encrypt
