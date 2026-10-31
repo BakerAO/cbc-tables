@@ -5,9 +5,7 @@ const getTables = `
   SELECT
     id,
     size,
-    assignedPerson,
-    email,
-    phone
+    assignedPerson
   FROM brunchTables
 `
 
