@@ -4,7 +4,7 @@ import routes from './routes.js'
 
 export const adminAuth = basicAuth({
   users: {
-    [process.env.ADMIN_USER]: process.env.ADMIN_PASSWORD
+    [process.env.API_USER]: process.env.API_PASSWORD
   },
   challenge: true,
   realm: 'CBC Admin'
