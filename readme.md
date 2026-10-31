@@ -12,3 +12,5 @@ MYSQL_USER=myUser
 MYSQL_PASSWORD=myPassword
 
 MYSQL_HOST=x.x.x.x
+
+MYSQL_PORT=3306

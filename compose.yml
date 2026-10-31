@@ -48,7 +48,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_PORT: 8002
+      MYSQL_PORT: ${MYSQL_PORT}
       MYSQL_HOST: ${MYSQL_HOST}
     networks:
       proxy-tier:
@@ -58,8 +58,6 @@ services:
     image: mariadb
     container_name: cbc-mariadb
     restart: unless-stopped
-    ports:
-      - "8002:3306"
     volumes:
       - cbc-mariadb-volume:/var/lib/mysql
     environment:
