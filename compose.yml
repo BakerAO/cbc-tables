@@ -34,9 +34,6 @@ services:
     build: ./client/
     ports:
       - "8000:8000"
-    environment:
-      - VIRTUAL_HOST=${OCBC_DOMAIN}
-      - LETSENCRYPT_HOST=${OCBC_DOMAIN}
     networks:
       proxy-tier:
         ipv4_address: 172.20.20.100
@@ -53,8 +50,6 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_PORT: 8002
       MYSQL_HOST: ${MYSQL_HOST}
-      VIRTUAL_HOST: ${OCBC_DOMAIN}
-      LETSENCRYPT_HOST: ${OCBC_DOMAIN}
     networks:
       proxy-tier:
         ipv4_address: 172.20.20.101
