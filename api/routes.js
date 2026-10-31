@@ -21,19 +21,19 @@ const wrapper = () => {
     `;
 
     const htmlB = `
-      <a href="/generate">
+      <a href="/api/generate">
         <button>Generate</button>
       </a>
-      <a href="/destroy">
+      <a href="/api/destroy">
         <button>Destroy</button>
       </a>
     `;
 
     const htmlC = `
-          <a href="/assigned">
+          <a href="/api/assigned">
             <button>Assigned</button>
           </a>
-          <form action="/reset">
+          <form action="/api/reset">
             <label for="id">Reset Table</label>
             <br />
             <input type="text" id="id" name="id">
