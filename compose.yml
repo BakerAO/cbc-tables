@@ -1,16 +1,12 @@
 services:
   nginx-proxy:
     container_name: nginx-proxy
-    image: nginxproxy/nginx-proxy:alpine
+    image: nginx:alpine
     restart: unless-stopped
-    labels:
-      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     volumes:
-      - ./uploadsize.conf:/etc/nginx/conf.d/uploadsize.conf
-      - /var/run/docker.sock:/tmp/docker.sock:z,ro
-      - certs:/etc/nginx/certs:z,ro
-      - vhost.d:/etc/nginx/vhost.d:z
-      - html:/usr/share/nginx/html:z
+      - ./nginx:/etc/nginx/conf.d:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - certbot-var:/var/www/certbot:ro
     ports:
       - 80:80
       - 443:443
@@ -20,14 +16,12 @@ services:
 
   lets-encrypt:
     container_name: lets-encrypt
-    image: nginxproxy/acme-companion
+    image: certbot/certbot:latest
     restart: unless-stopped
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:z,ro
-      - certs:/etc/nginx/certs:z
-      - acme:/etc/acme.sh:z
-      - vhost.d:/etc/nginx/vhost.d:z
-      - html:/usr/share/nginx/html:z
+      - certbot-etc:/etc/letsencrypt:rw
+      - certbot-var:/var/www/certbot:rw
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done'"
     networks:
       proxy-tier:
         ipv4_address: 172.20.20.3
@@ -39,7 +33,7 @@ services:
     restart: unless-stopped
     build: ./client/
     ports:
-      - "80:8000"
+      - "8000:8000"
     environment:
       - VIRTUAL_HOST=${OCBC_DOMAIN}
       - LETSENCRYPT_HOST=${OCBC_DOMAIN}
@@ -84,10 +78,8 @@ services:
 
 volumes:
   cbc-mariadb-volume:
-  acme:
-  certs:
-  html:
-  vhost.d:
+  certbot-etc:
+  certbot-var:
 
 networks:
   proxy-tier:
